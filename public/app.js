@@ -1,4 +1,4 @@
-const socket = io('http://localhost:5000');
+const socket = io();
 
 socket.on('message', msg => {
     const el = document.createElement('li');

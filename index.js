@@ -20,4 +20,6 @@ io.on('connection', socket => {
     socket.on('disconnect', () => io.emit('alert', 'Someone left the chat.'));
 });
 
-server.listen(5000, () => console.log('Server listening on 5000'));
+server.listen(process.env.PORT || 5000, () =>
+    console.log(`Server listening on ${process.env.PORT || 5000}`)
+);
