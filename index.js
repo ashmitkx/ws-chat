@@ -12,12 +12,12 @@ const io = new Server(server, { cors: { origin: '*' } });
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', socket => {
-    console.log('Someone joined the chat!');
-    io.emit('alert', 'Someone joined the chat!');
+    socket.emit('alert', 'welcome to the chat');
+    socket.broadcast.emit('alert', 'Someone joined the chat!');
 
-    socket.on('message', msg => socket.emit('message', msg));
+    socket.on('message', msg => io.emit('message', msg));
 
-    socket.on('disconnect', () => io.emit('alert', 'Someone left the chat.'));
+    socket.on('disconnect', () => socket.broadcast.emit('alert', 'Someone left the chat.'));
 });
 
 server.listen(process.env.PORT || 5000, () =>
