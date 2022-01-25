@@ -2,7 +2,7 @@ const socket = io();
 
 socket.on('message', msg => {
     const el = document.createElement('li');
-    el.innerHTML = `<span class="name">${msg.name}:</span>
+    el.innerHTML = `<span class="name highlight">${msg.name}:</span>
                 <span class="msg">${msg.msg}</span>`;
 
     document.querySelector('ul').appendChild(el);
@@ -10,6 +10,7 @@ socket.on('message', msg => {
 
 socket.on('alert', alert => {
     const el = document.createElement('li');
+    el.classList.add('highlight');
     el.innerHTML = alert;
 
     document.querySelector('ul').appendChild(el);
